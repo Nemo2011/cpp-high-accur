@@ -10,88 +10,108 @@ using namespace std;
 #define MAX_SIZE 10000
 #define __MAX_SIZE MAX_SIZE + 5
 
-namespace haa {
+namespace haa
+{
     /**
      * @brief 高精度正整数
      */
-    struct BigINT {
+    struct BigINT
+    {
         // __num[0] 是长度，其他位是数值
         int __num[__MAX_SIZE];
         /**
          * @brief 构造器
-         * 
+         *
          * @param s 初始数值
          */
-        BigINT(string s = "") {
-            for (int i = 0; i < __MAX_SIZE; i++) {
+        BigINT(string s = "")
+        {
+            for (int i = 0; i < __MAX_SIZE; i++)
+            {
                 __num[i] = 0;
             }
             __num[0] = s.length();
-            for (int i = 1; i <= s.length(); i++) {
-                __num[i] = s[__num[0] - i] - '0';   
+            for (int i = 1; i <= s.length(); i++)
+            {
+                __num[i] = s[__num[0] - i] - '0';
+            }
+            if (s == "") {
+                __num[0] = 1;
+                __num[1] = 0;
             }
         }
         /**
          * @brief 清空
-         * 
+         *
          */
-        void clear() {
-            for (int i = 0; i < __MAX_SIZE; i++) {
+        void clear()
+        {
+            for (int i = 0; i < __MAX_SIZE; i++)
+            {
                 __num[i] = 0;
             }
         }
         /**
          * @brief 获取长度
-         * 
-         * @return int 
+         *
+         * @return int
          */
-        int length() {
+        int length()
+        {
             return __num[0];
         }
         /**
          * @brief 输出
-         * 
+         *
          */
-        void print_line() {
-            for (int i = __num[0]; i >= 1; i--) {
+        void print_line()
+        {
+            for (int i = __num[0]; i >= 1; i--)
+            {
                 cout << __num[i];
             }
             cout << endl;
         }
         /**
          * @brief 输入
-         * 
+         *
          */
-        void put_line() {
+        void put_line()
+        {
             clear();
             string s;
             cin >> s;
             __num[0] = s.length();
-            for (int i = 1; i <= s.length(); i++) {
-                __num[i] = s[__num[0] - i] - '0';   
+            for (int i = 1; i <= s.length(); i++)
+            {
+                __num[i] = s[__num[0] - i] - '0';
             }
         }
         /**
          * @brief 转换为 string
-         * 
-         * @return string 
+         *
+         * @return string
          */
-        string stringify() {
+        string stringify()
+        {
             string s = "";
-            for (int i = __num[0]; i >= 1; i--) {
+            for (int i = __num[0]; i >= 1; i--)
+            {
                 s = s + (char)(__num[i] + '0');
             }
             return s;
         }
         /**
          * @brief 转换为 long long
-         * 
-         * @return long long 
+         *
+         * @return long long
          */
-        long long long_long() {
+        long long long_long()
+        {
             long long l = 0;
             long long val = 1;
-            for (int i = 1; i <= length(); i++) {
+            for (int i = 1; i <= length(); i++)
+            {
                 l += val * __num[i];
                 val *= 10;
             }
@@ -99,28 +119,32 @@ namespace haa {
         }
         /**
          * @brief 拷贝
-         * 
-         * @return BigINT 
+         *
+         * @return BigINT
          */
-        BigINT copy() {
+        BigINT copy()
+        {
             return BigINT(to_string(long_long()));
         }
         /**
          * @brief 加法
-         * 
+         *
          * @param a 加数
-         * @return BigINT 
+         * @return BigINT
          */
-        BigINT plus(BigINT a) {
+        BigINT plus(BigINT a)
+        {
             BigINT b;
             int m = max(length(), a.length());
-            for (int i = 1; i <= m; i++) {
+            for (int i = 1; i <= m; i++)
+            {
                 b.__num[i] += __num[i] + a.__num[i];
                 b.__num[i + 1] += b.__num[i] / 10;
                 b.__num[i] = b.__num[i] % 10;
             }
             int l = m + 1;
-            while (b.__num[l] == 0 && l > 1) {
+            while (b.__num[l] == 0 && l > 1)
+            {
                 l--;
             }
             b.__num[0] = l;
@@ -128,19 +152,24 @@ namespace haa {
         }
         /**
          * @brief 是否比一个数大
-         * 
+         *
          * @param a 比较的数
          * @return bool
          */
-        bool big(BigINT a) {
-            if (a.length() != length()) {
+        bool big(BigINT a)
+        {
+            if (a.length() != length())
+            {
                 return length() > a.length();
             }
-            for (int i = length(); i >= 1; i--) {
-                if (a.__num[i] > __num[i]) {
+            for (int i = length(); i >= 1; i--)
+            {
+                if (a.__num[i] > __num[i])
+                {
                     return 0;
                 }
-                if (a.__num[i] < __num[i]) {
+                if (a.__num[i] < __num[i])
+                {
                     return 1;
                 }
             }
@@ -148,16 +177,20 @@ namespace haa {
         }
         /**
          * @brief 比较是否与一个数相等
-         * 
+         *
          * @param a 比较的数
          * @return bool
          */
-        bool equal(BigINT a) {
-            if (a.length() != length()) {
+        bool equal(BigINT a)
+        {
+            if (a.length() != length())
+            {
                 return 0;
             }
-            for (int i = 1; i <= length(); i++) {
-                if (a.__num[i] != __num[i]) {
+            for (int i = 1; i <= length(); i++)
+            {
+                if (a.__num[i] != __num[i])
+                {
                     return 0;
                 }
             }
@@ -165,54 +198,65 @@ namespace haa {
         }
         /**
          * @brief 减法
-         * 
+         *
          * @param a 减数
-         * @return BigINT 
+         * @return BigINT
          */
-        BigINT minus(BigINT a) {
-            if (big(a) || equal(a)) {
+        BigINT minus(BigINT a)
+        {
+            if (big(a) || equal(a))
+            {
                 BigINT result;
                 int self_copy[__MAX_SIZE];
                 self_copy[0] = length();
-                for (int i = 1; i <= length(); i++) {
+                for (int i = 1; i <= length(); i++)
+                {
                     self_copy[i] = __num[i];
                 }
-                for (int i = 1; i <= __num[0]; i++) {
-                    if (__num[i] < a.__num[i]) {
+                for (int i = 1; i <= __num[0]; i++)
+                {
+                    if (__num[i] < a.__num[i])
+                    {
                         self_copy[i] += 10;
                         self_copy[i + 1]--;
                     }
                     result.__num[i] = self_copy[i] - a.__num[i];
                 }
                 int l = length();
-                while (result.__num[l] == 0 && l > 1) {
+                while (result.__num[l] == 0 && l > 1)
+                {
                     l--;
                 }
                 result.__num[0] = l;
                 return result;
             }
-            else {
+            else
+            {
                 // 结果为负数
                 return BigINT();
             }
         }
         /**
          * @brief 乘法
-         * 
+         *
          * @param a 乘数
-         * @return BigINT 
+         * @return BigINT
          */
-        BigINT times(BigINT a) {
+        BigINT times(BigINT a)
+        {
             BigINT result;
-            for (int i = 1; i <= length(); i++) {
-                for (int j = 1; j <= a.length(); j++) {
+            for (int i = 1; i <= length(); i++)
+            {
+                for (int j = 1; j <= a.length(); j++)
+                {
                     result.__num[i + j - 1] += __num[i] * a.__num[j];
                     result.__num[i + j] += result.__num[i + j - 1] / 10;
                     result.__num[i + j - 1] %= 10;
                 }
             }
             int l = length() + a.length();
-            while (result.__num[l] == 0 && l > 1) {
+            while (result.__num[l] == 0 && l > 1)
+            {
                 l--;
             }
             result.__num[0] = l;
@@ -220,27 +264,32 @@ namespace haa {
         }
         /**
          * @brief 除法
-         * 
+         *
          * @param a 除数
-         * @return BigINT 
+         * @return BigINT
          */
-        BigINT divide(BigINT a) {
+        BigINT divide(BigINT a)
+        {
             BigINT result;
             int l = __num[0] - a.__num[0] + 1;
             BigINT temp;
             BigINT self_cpy = copy();
-            for (int i = l; i > 0; i--) {
+            for (int i = l; i > 0; i--)
+            {
                 temp.clear();
-                for (int j = 1; j <= a.length(); j++) {
+                for (int j = 1; j <= a.length(); j++)
+                {
                     temp.__num[i + j - 1] = a.__num[j];
                 }
                 temp.__num[0] = a.__num[0] + i - 1;
-                while (self_cpy.big(temp) || self_cpy.equal(temp)) {
+                while (self_cpy.big(temp) || self_cpy.equal(temp))
+                {
                     result.__num[i]++;
                     self_cpy = self_cpy.minus(temp);
                 }
             }
-            while (result.__num[l] == 0 && l > 1) {
+            while (result.__num[l] == 0 && l > 1)
+            {
                 l--;
             }
             result.__num[0] = l;
@@ -248,42 +297,53 @@ namespace haa {
         }
         /**
          * @brief 取余
-         * 
+         *
          * @param a 除数
-         * @return BigINT 
+         * @return BigINT
          */
-        BigINT mod(BigINT a) {
+        BigINT mod(BigINT a)
+        {
             return (minus(divide(a).times(a)));
         }
     };
-    BigINT operator+(BigINT a, BigINT b) {
+    BigINT operator+(BigINT a, BigINT b)
+    {
         return a.plus(b);
     }
-    BigINT operator-(BigINT a, BigINT b) {
+    BigINT operator-(BigINT a, BigINT b)
+    {
         return a.minus(b);
     }
-    bool operator<(BigINT a, BigINT b) {
+    bool operator<(BigINT a, BigINT b)
+    {
         return (!a.big(b)) && (!a.equal(b));
     }
-    bool operator<=(BigINT a, BigINT b) {
+    bool operator<=(BigINT a, BigINT b)
+    {
         return !a.big(b);
     }
-    bool operator>(BigINT a, BigINT b) {
+    bool operator>(BigINT a, BigINT b)
+    {
         return a.big(b);
     }
-    bool operator>=(BigINT a, BigINT b) {
+    bool operator>=(BigINT a, BigINT b)
+    {
         return a.big(b) || a.equal(b);
     }
-    bool operator==(BigINT a, BigINT b) {
+    bool operator==(BigINT a, BigINT b)
+    {
         return a.equal(b);
     }
-    BigINT operator*(BigINT a, BigINT b) {
+    BigINT operator*(BigINT a, BigINT b)
+    {
         return a.times(b);
     }
-    BigINT operator/(BigINT a, BigINT b) {
+    BigINT operator/(BigINT a, BigINT b)
+    {
         return a.divide(b);
     }
-    BigINT operator%(BigINT a, BigINT b) {
+    BigINT operator%(BigINT a, BigINT b)
+    {
         return a.mod(b);
     }
 }
