@@ -1,5 +1,5 @@
 #include <iostream>
-#include "lib/haa.h"
+#include "lib/haa.hpp"
 using namespace std;
 using namespace haa;
 
