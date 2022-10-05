@@ -7,8 +7,8 @@
 #include <algorithm>
 using namespace std;
 
-#define MAX_SIZE 1000
-#define __MAX_SIZE MAX_SIZE + 1
+#define MAX_SIZE 10000
+#define __MAX_SIZE MAX_SIZE + 5
 
 namespace haa {
     /**
@@ -256,4 +256,34 @@ namespace haa {
             return (minus(divide(a).times(a)));
         }
     };
+    BigINT operator+(BigINT a, BigINT b) {
+        return a.plus(b);
+    }
+    BigINT operator-(BigINT a, BigINT b) {
+        return a.minus(b);
+    }
+    bool operator<(BigINT a, BigINT b) {
+        return (!a.big(b)) && (!a.equal(b));
+    }
+    bool operator<=(BigINT a, BigINT b) {
+        return !a.big(b);
+    }
+    bool operator>(BigINT a, BigINT b) {
+        return a.big(b);
+    }
+    bool operator>=(BigINT a, BigINT b) {
+        return a.big(b) || a.equal(b);
+    }
+    bool operator==(BigINT a, BigINT b) {
+        return a.equal(b);
+    }
+    BigINT operator*(BigINT a, BigINT b) {
+        return a.times(b);
+    }
+    BigINT operator/(BigINT a, BigINT b) {
+        return a.divide(b);
+    }
+    BigINT operator%(BigINT a, BigINT b) {
+        return a.mod(b);
+    }
 }
