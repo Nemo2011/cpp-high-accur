@@ -10,38 +10,38 @@
 
 ## 举个例子
 
-1. 引入
-
 ``` cpp
-#include <haa.h>
+#include <iostream>
+#include <string>
+#include "lib/haa.hpp"
+using namespace std;
 using namespace haa;
-```
 
-2. 声明高精度数字
-
-``` cpp
-// 空的数字
-BigINT num;
-// 直接赋值
-BigINT num = BigINT("11111");
-```
-
-3. 输入输出
-
-``` cpp
-// 输入
-num.put_line();
-// 输出
-num.print_line();
-```
-
-4. 加法
-
-``` cpp
-BigINT a, b;
-a.put_line();
-b.put_line();
-cout << a.plus(b).stringify() << endl;
+int main() {
+    /**
+     * $> ./test
+     * 2 3
+     * ..~~~ 2 3
+     * ----- 5
+     * $> 
+     */
+    string s1, s2;                                                 // -----1
+    cin >> s1 >> s2;                                               // |输入|1
+    BigINT n1 = BigINT(s1), n2 = BigINT(s2);                       // -----1
+    BigINT sum = n1 + n2;                                          // |求和|2
+    for (BigINT i = ONE; !i.big(n1); i = i.plus(ONE)) {            // -----3
+        cout << ".";                                               // |   |3
+    }                                                              // |   |3
+    for (BigINT i = ONE; !i.big(n2); i = i.plus(ONE)) {            // |   |3
+        cout << "~";                                               // |   |3
+    }                                                              // |循环|3
+    cout << " " << n1.stringify() << " " << n2.stringify() << endl;// |输出|3
+    for (BigINT i = ONE; !i.big(sum); i = i.plus(ONE)) {           // |   |3
+        cout << "-";                                               // |   |3
+    }                                                              // |   |3
+    cout << " " << sum.stringify() << endl;                        // -----3
+    return 0;
+}
 ```
 
 ## License

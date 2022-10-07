@@ -1,6 +1,15 @@
-// haa.h - High Accuracy Algorithm
-// By Nemo, 2022.10.07
-// MIT License
+/**
+ * @file haa.hpp
+ * @author Nemo2011 (yimoxia@outlook.com)
+ * @brief C++ 高精度算法
+ * @version 2022.10.07
+ * @date 2022-10-07
+ * 
+ * @copyright Copyright (c) 2022 Nemo2011
+ * 
+ * This is a C++ LIBRARY. You can't use it in C! 
+ * 
+ */
 
 #include <iostream>
 #include <string>
@@ -10,6 +19,10 @@ using namespace std;
 #define MAX_SIZE 10000
 #define __MAX_SIZE MAX_SIZE + 5
 
+/**
+ * @brief 高精度算法命名空间
+ * 
+ */
 namespace haa
 {
     /**
@@ -322,6 +335,20 @@ namespace haa
             }
             return self_cpy;
         }
+        /**
+         * @brief 乘方
+         * 
+         * @param a 次方数
+         * @return BigINT 
+         */
+        BigINT power(BigINT a)
+        {
+            BigINT result = BigINT("1");
+            for (BigINT i = BigINT("1"); !i.big(a); i = i.plus(BigINT("1"))) {
+                result = result.times(copy());
+            }
+            return result;
+        }
     };
     BigINT operator+(BigINT a, BigINT b)
     {
@@ -363,8 +390,11 @@ namespace haa
     {
         return a.mod(b);
     }
-    const BigINT ZERO = BigINT("0");
-    const BigINT ONE = BigINT("1");
+    /**
+     * @brief 设置一个数字的最长长度
+     * 
+     * @param len 长度
+     */
     void MAX_LENGTH(int len) {
         #ifdef __MAX_SIZE
         #undef __MAX_SIZE
@@ -373,4 +403,7 @@ namespace haa
         #define MAX_SIZE len
         #define __MAX_SIZE MAX_SIZE + 5
     }
+    // 常用常量
+    const BigINT ZERO = BigINT("0");
+    const BigINT ONE = BigINT("1");
 }
