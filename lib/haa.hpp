@@ -1,5 +1,5 @@
 // haa.h - High Accuracy Algorithm
-// By Nemo, 2022.10.05
+// By Nemo, 2022.10.07
 // MIT License
 
 #include <iostream>
@@ -124,7 +124,7 @@ namespace haa
          */
         BigINT copy()
         {
-            return BigINT(to_string(long_long()));
+            return BigINT(stringify());
         }
         /**
          * @brief 加法
@@ -303,7 +303,24 @@ namespace haa
          */
         BigINT mod(BigINT a)
         {
-            return (minus(divide(a).times(a)));
+            int l = __num[0] - a.__num[0] + 1;
+            BigINT temp;
+            BigINT self_cpy = copy();
+            self_cpy.print_line();
+            for (int i = l; i > 0; i--)
+            {
+                temp.clear();
+                for (int j = 1; j <= a.length(); j++)
+                {
+                    temp.__num[i + j - 1] = a.__num[j];
+                }
+                temp.__num[0] = a.__num[0] + i - 1;
+                while (self_cpy.big(temp) || self_cpy.equal(temp))
+                {
+                    self_cpy = self_cpy.minus(temp);
+                }
+            }
+            return self_cpy;
         }
     };
     BigINT operator+(BigINT a, BigINT b)
