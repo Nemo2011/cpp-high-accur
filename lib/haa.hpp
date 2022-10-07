@@ -363,4 +363,14 @@ namespace haa
     {
         return a.mod(b);
     }
+    const BigINT ZERO = BigINT("0");
+    const BigINT ONE = BigINT("1");
+    void MAX_LENGTH(int len) {
+        #ifdef __MAX_SIZE
+        #undef __MAX_SIZE
+        #undef MAX_SIZE
+        #endif
+        #define MAX_SIZE len
+        #define __MAX_SIZE MAX_SIZE + 5
+    }
 }
