@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "lib/haa.hpp"
+#include "lib/haa.h"
 using namespace std;
 using namespace haa;
 

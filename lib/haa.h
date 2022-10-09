@@ -350,46 +350,6 @@ namespace haa
             return result;
         }
     };
-    BigINT operator+(BigINT a, BigINT b)
-    {
-        return a.plus(b);
-    }
-    BigINT operator-(BigINT a, BigINT b)
-    {
-        return a.minus(b);
-    }
-    bool operator<(BigINT a, BigINT b)
-    {
-        return (!a.big(b)) && (!a.equal(b));
-    }
-    bool operator<=(BigINT a, BigINT b)
-    {
-        return !a.big(b);
-    }
-    bool operator>(BigINT a, BigINT b)
-    {
-        return a.big(b);
-    }
-    bool operator>=(BigINT a, BigINT b)
-    {
-        return a.big(b) || a.equal(b);
-    }
-    bool operator==(BigINT a, BigINT b)
-    {
-        return a.equal(b);
-    }
-    BigINT operator*(BigINT a, BigINT b)
-    {
-        return a.times(b);
-    }
-    BigINT operator/(BigINT a, BigINT b)
-    {
-        return a.divide(b);
-    }
-    BigINT operator%(BigINT a, BigINT b)
-    {
-        return a.mod(b);
-    }
     /**
      * @brief 设置一个数字的最长长度
      * 
@@ -406,4 +366,46 @@ namespace haa
     // 常用常量
     const BigINT ZERO = BigINT("0");
     const BigINT ONE = BigINT("1");
+}
+
+
+haa::BigINT operator+(haa::BigINT a, haa::BigINT b)
+{
+    return a.plus(b);
+}
+haa::BigINT operator-(haa::BigINT a, haa::BigINT b)
+{
+    return a.minus(b);
+}
+bool operator<(haa::BigINT a, haa::BigINT b)
+{
+    return (!a.big(b)) && (!a.equal(b));
+}
+bool operator<=(haa::BigINT a, haa::BigINT b)
+{
+    return !a.big(b);
+}
+bool operator>(haa::BigINT a, haa::BigINT b)
+{
+    return a.big(b);
+}
+bool operator>=(haa::BigINT a, haa::BigINT b)
+{
+    return a.big(b) || a.equal(b);
+}
+bool operator==(haa::BigINT a, haa::BigINT b)
+{
+    return a.equal(b);
+}
+haa::BigINT operator*(haa::BigINT a, haa::BigINT b)
+{
+    return a.times(b);
+}
+haa::BigINT operator/(haa::BigINT a, haa::BigINT b)
+{
+    return a.divide(b);
+}
+haa::BigINT operator%(haa::BigINT a, haa::BigINT b)
+{
+    return a.mod(b);
 }
