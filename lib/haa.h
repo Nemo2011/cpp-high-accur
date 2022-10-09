@@ -43,6 +43,17 @@ namespace haa
             {
                 __num[i] = 0;
             }
+            while (true) {
+                if (s[0] == '0') 
+                {
+                    s.erase(0, 1);
+                    continue;
+                }
+                else 
+                {
+                    break;
+                }
+            }
             __num[0] = s.length();
             for (int i = 1; i <= s.length(); i++)
             {
@@ -94,6 +105,17 @@ namespace haa
             clear();
             string s;
             cin >> s;
+            while (true) {
+                if (s[0] == '0') 
+                {
+                    s.erase(0, 1);
+                    continue;
+                }
+                else 
+                {
+                    break;
+                }
+            }
             __num[0] = s.length();
             for (int i = 1; i <= s.length(); i++)
             {
