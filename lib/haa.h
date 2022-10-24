@@ -341,7 +341,6 @@ namespace haa
             int l = __num[0] - a.__num[0] + 1;
             BigINT temp;
             BigINT self_cpy = copy();
-            self_cpy.print_line();
             for (int i = l; i > 0; i--)
             {
                 temp.clear();
