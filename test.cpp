@@ -16,14 +16,14 @@ int main() {
     cin >> s1 >> s2;
     BigINT n1 = BigINT(s1), n2 = BigINT(s2);
     BigINT sum = n1 + n2;
-    for (BigINT i = ONE; !i.big(n1); i = i.plus(ONE)) {
+    for (BigINT i = ONE; i <= n1; i = i.plus(ONE)) {
         cout << ".";
     }
-    for (BigINT i = ONE; !i.big(n2); i = i.plus(ONE)) {
+    for (BigINT i = ONE; i <= n2; i = i.plus(ONE)) {
         cout << "~";
     }
     cout << " " << n1.stringify() << " " << n2.stringify() << endl;
-    for (BigINT i = ONE; !i.big(sum); i = i.plus(ONE)) {
+    for (BigINT i = ONE; i <= sum; i = i.plus(ONE)) {
         cout << "-";
     }
     cout << " " << sum.stringify() << endl;
